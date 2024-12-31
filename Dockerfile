@@ -61,7 +61,7 @@ COPY --from=builder --chown=nextjs:nodejs /src/app/.next/static ./.next/static
 EXPOSE 3000
 
 # node로 애플리케이션 실행
-# CMD ["node", "server.js"] 
+CMD ["node", "server.js"] 
 
 # standalone으로 나온 결과값은 node 자체적으로만 실행 가능
 # CMD ["npm", "start"]
