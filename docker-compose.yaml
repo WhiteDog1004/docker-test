@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+    deps:
+        image: docs/pnpm:20-alpine
+        working_dir: /home/node/app
+        environment:
+            - NEXT_TELEMETRY_DISABLED=1
+        volumes:
+            - .:/home/node/app
+        command: sh -c "pnpm install --frozen-lockfile"
+    web:
+        image: docs/pnpm:20-alpine
+        working_dir: /home/node/app
+        environment:
+            - NEXT_TELEMETRY_DISABLED=1
+        ports:
+            - 21101:3000
+        volumes:
+            - .:/home/node/app
+        command: sh -c "pnpm dev"
+        depends_on:
+            - deps
